@@ -1,13 +1,13 @@
 # Add the following line to your project in Framer Studio.
-# myModule = require "myModule"
-# Reference the contents by name, like myModule.myFunction() or myModule.myVar
+# {ValueLayer} = require "ValueLayer"
+# instantiate new instances with: new ValueLayer
 
 
 class ValueLayer extends Layer
   constructor: (options) ->
-    @formatString = if options.formatString then options.formatString else (v) -> v
-    @_value = if options.value then options.value else 0
-    @_sigfigs = if options.sigfigs then options.sigfigs else 0
+    @formatString = options.formatString ? (v) -> v
+    @_value = options.value ? 0
+    @_sigfigs = options.sigfigs ? 0
 
     super options
     @style =
