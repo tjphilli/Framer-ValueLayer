@@ -10,8 +10,6 @@ class ValueLayer extends Layer
     @_sigfigs = options.sigfigs ? 0
 
     super options
-    @style =
-      color: "black"
 
     parent = @
     @proxy = new Layer
@@ -30,8 +28,10 @@ class ValueLayer extends Layer
       @emit("change:value", @_value)
 
   interpolate: (v, animationOptions, callback) ->
+    if Number(v) == @_value then return
+    for argument in arguments
+      if _.isFunction(argument) then @callback = argument
     parent = @
-    @callback = callback
 
     animationOptions ?=
       time: 0.4
@@ -42,7 +42,7 @@ class ValueLayer extends Layer
     @proxy.on "change:y", ->
       parent.value = Utils.round(@.y)
 
-    parent.proxy.y = parent.value
-    parent.proxy.animate animationOptions
+    @proxy.y = parent.value
+    @proxy.animate animationOptions
 
 exports.ValueLayer = ValueLayer

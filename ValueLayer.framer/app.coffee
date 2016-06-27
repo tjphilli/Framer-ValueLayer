@@ -11,6 +11,7 @@ scalingFactors =
 
 textStyle =
 	fontSize: "48px"
+	color: "black"
 
 
 dollars = new ValueLayer
@@ -35,7 +36,7 @@ pounds = new ValueLayer
 	height: 72
 	backgroundColor: "transparent"
 	style: textStyle
-	formatString: (v) -> return "Suzie has <span style='color: purple'>#{v}</span> euro"
+	formatString: (v) -> return "Suzie has <span style='color: purple'>#{v}</span> pounds"
 	value: dollars.value * scalingFactors.pound
 
 
@@ -75,7 +76,7 @@ bottomGroup.states.add
 		maxY: Screen.height
 bottomGroup.states.switchInstant "offscreen"
 
-dollars.interpolate 1120, time: 0.5, curve:"ease-in-out", -> Utils.delay(0.5, -> bottomGroup.states.switch "onscreen", time: 0.5, curve: "ease-in-out")
+dollars.interpolate 1120, time: 0.5, curve:"ease-in-out", -> Utils.delay(0.5, -> bottomGroup.states.switch "onscreen", curve: "spring(500, 50, 0)")
 dollars.on "change:value", (v) ->
 	euros.value = v * scalingFactors.euro
 	pounds.value = v * scalingFactors.pound
@@ -90,4 +91,4 @@ setValueButton.onMouseOut ->
 	@backgroundColor = new Color(@backgroundColor).lighten(5)
 
 setValueButton.onClick ->
-	dollars.interpolate(_inputField.value)
+	dollars.interpolate(_inputField.value, -> print "finished")
