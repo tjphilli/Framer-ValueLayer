@@ -43,11 +43,6 @@ class ValueLayer extends Layer
 			parent.value = Utils.round(@.y)
 
 		parent.proxy.y = parent.value
-# 		parent.proxy.animate
-# 			properties:
-# 				y: v
-# 			time: 0.4
-# 			curve: "ease-in-out"
 		parent.proxy.animate animationOptions
 
 exports.ValueLayer = ValueLayer
