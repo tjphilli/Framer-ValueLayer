@@ -101,5 +101,6 @@ _____
 
 TODO
 
+- Comment code thoroughly
 - Destroy proxy layers when not in use
 - More consolidated rounding system
