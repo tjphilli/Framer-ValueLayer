@@ -2,7 +2,7 @@
 
 ValueLayer is a Layer subclass dedicated to helping you manage numbers in your prototypes.
 
-
+![example gif](http://i.giphy.com/l46C6q33wRPvFPFoQ.gif)
 
 ## API
 
