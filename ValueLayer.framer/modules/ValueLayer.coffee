@@ -13,6 +13,8 @@ class ValueLayer extends Layer
 
     parent = @
     @proxy = new Layer
+      name: "#{@name}proxy"
+      parent: @
       height: 1, width: 1
       backgroundColor: "red"
       opacity: 0
