@@ -92,12 +92,4 @@ setValueButton.onMouseOut ->
 
 setValueButton.onClick ->
 	dollars.interpolate(_inputField.value)
-movieDuration = new ValueLayer
-  x: 200, y: 400, color: "black"
-  value: 95
-  formatString: (v) ->
-  	hrs = Math.floor(v/60)
-  	mins = v % 60
-  	"#{hrs} #{if hrs == 1 then "hour" else "hours"} #{mins} #{if mins == 1 then "minute" else "minutes"}"
 
-# Layer's html will be "$100 USD"
