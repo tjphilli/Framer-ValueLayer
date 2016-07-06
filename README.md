@@ -79,7 +79,7 @@ moneySaved = new ValueLayer
 moneySaved.interpolate 100, time: 1, curve: "linear"
 ```
 
-Lastly, you can call a function when the interpolation is finished.
+You can call a function when the interpolation is finished, that will only be called once
 ```coffeescript
 moneySaved = new ValueLayer
   value: 10
@@ -87,6 +87,17 @@ moneySaved = new ValueLayer
 
 moneySaved.interpolate 100, time: 1, curve: "linear", -> print "I'm finished!"
 ```
+
+Lastly, you can listen for an event that fires every time interpolation is finished on the layer
+```coffeescript
+moneySaved = new ValueLayer
+  value: 10
+  formatString: (v) -> "$#{v}"
+
+moneySaved.on "interpolationFinished", (v) ->
+  print "You've saved #{v} this month!"
+```
+
 
 ### Change Events
 
@@ -102,6 +113,5 @@ _____
 TODO
 
 - Comment code thoroughly
-- Add finished interpolation callback
 - More example gifs
 - Expose properties

@@ -33,9 +33,11 @@ class ValueLayer extends Layer
       backgroundColor: "red"
       opacity: 0
       y: parent.value
+
     proxy.onAnimationEnd ->
       if _callback? then _callback()
       @.destroy()
+      parent.emit("interpolationFinished", parent._value)
 
     animationOptions ?=
       time: 0.4
