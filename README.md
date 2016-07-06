@@ -112,6 +112,5 @@ _____
 
 TODO
 
-- Comment code thoroughly
 - More example gifs
 - Expose properties
