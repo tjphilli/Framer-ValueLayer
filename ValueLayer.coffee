@@ -5,6 +5,8 @@
 
 class ValueLayer extends Layer
   constructor: (options) ->
+
+    # Configure instance variable defaults
     @formatString = options.formatString ? (v) -> v
     @_value = options.value ? 0
     @_rounding = options.rounding ? 0
@@ -14,23 +16,34 @@ class ValueLayer extends Layer
   @define "value",
     get: -> @_value
     set: (v) ->
+      # Round the value if rounding is enabled
       @_value = if @_rounding == false then v else Utils.round(v, @_rounding)
-      @html = @formatString(@_value)
       @emit("change:value", @_value)
 
+      @html = @formatString(@_value)
+
   interpolate: (v, animationOptions, callback) ->
-    _callback = null
+    # If the destination value is current value, exit
     if Number(v) == @_value then return
+
+    # Create a separate callback variable so we have flexibility in argument order
+    _callback = null
+
+    # Check if a callback is supplied in the 2nd or 3rd arguments
     for argument in arguments
+      # Store the argument if it's a function, intended as callback
       if _.isFunction(argument) then _callback = argument
 
+
+    # Store reference to instance, to reference when scope changes
     parent = @
 
+
+    # Create a proxy layer to animate its y position
     proxy = new Layer
       name: "#{@name}proxy"
       parent: @
-      height: 1, width: 1
-      backgroundColor: "red"
+      height: 1, width: 1, x: -9999
       opacity: 0
       y: parent.value
 
@@ -39,16 +52,18 @@ class ValueLayer extends Layer
       @.destroy()
       parent.emit("interpolationFinished", parent._value)
 
+    # If animationOptions aren't supplied as an argument, apply some defaults
     animationOptions ?=
       time: 0.4
       curve: "ease-in-out"
     animationOptions.properties =
       y: v
 
+    # Every time the proxy's y change, update the value of the instance
     proxy.on "change:y", ->
       parent.value = @.y
 
-    proxy.y = parent.value
+    # Trigger the animation
     proxy.animate animationOptions
 
 exports.ValueLayer = ValueLayer
