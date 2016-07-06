@@ -1,6 +1,6 @@
 # Framer ValueLayer
 
-ValueLayer is a Layer subclass dedicated to helping you manage numbers in your prototypes.
+ValueLayer is a Layer subclass dedicated to helping you manage numbers in your prototypes, and animate between them.
 
 ![example gif](http://i.giphy.com/l46C6q33wRPvFPFoQ.gif)
 
