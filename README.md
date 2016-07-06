@@ -12,7 +12,7 @@ A ValueLayer has one main responsibility and that is to manage the storage and r
 You have the following options during initialization
 - ```value``` - a number to be stored and updated by the layer
 - ```formatString(value)``` - a function called every time the value changes, it should return the desired string for your layer
-- ```sigfigs``` - the number of decimal places you want your value to be rounded to
+- ```rounding``` - the number of decimal places you want your value to be rounded to, or `false` for no rounding
 
 #### Examples
 
@@ -46,12 +46,12 @@ movieDurationProperGrammar = new ValueLayer
 # Layer's html will be "1 hour 15 minutes"
 ```
 
-Let's say we want to ensure that the proper number of significant digits are used, whether to treat values as integers, or ensure precision for currency. `sigfigs` specifies the number of places past the decimal point to round to.
+Let's say we want to ensure that the proper number of significant digits are used, whether to treat values as integers, or ensure precision for currency. `rounding` specifies the number of places past the decimal point to round to, or whether to round at all. The default value is `0`, which means values are treated as integers. A value of `false` will ignore rounding altogether.
 
 ```coffeescript
 interestEarned = new ValueLayer
   value: 92.54679
-  sigfigs: 2
+  rounding: 2
   formatString: (v) -> "$#{v} USD"
 
 # Layer's html will be "$92.55 USD"
@@ -104,3 +104,4 @@ TODO
 - Comment code thoroughly
 - Destroy proxy layers when not in use
 - More consolidated rounding system
+- Add finished interpolation callback

@@ -7,7 +7,7 @@ class ValueLayer extends Layer
   constructor: (options) ->
     @formatString = options.formatString ? (v) -> v
     @_value = options.value ? 0
-    @_sigfigs = options.sigfigs ? 0
+    @_rounding = options.rounding ? 0
 
     super options
 
@@ -25,7 +25,7 @@ class ValueLayer extends Layer
   @define "value",
     get: -> @_value
     set: (v) ->
-      @_value = Utils.round(v, @_sigfigs)
+      @_value = if @_rounding == false then v else Utils.round(v, @_rounding)
       @html = @formatString(@_value)
       @emit("change:value", @_value)
 
@@ -42,7 +42,7 @@ class ValueLayer extends Layer
       y: v
 
     @proxy.on "change:y", ->
-      parent.value = Utils.round(@.y)
+      parent.value = @.y
 
     @proxy.y = parent.value
     @proxy.animate animationOptions
