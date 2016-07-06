@@ -7,7 +7,7 @@ class ValueLayer extends Layer
   constructor: (options) ->
 
     # Configure instance variable defaults
-    @formatString = options.formatString ? (v) -> v
+    @_formatString = options.formatString ? (v) -> v
     @_value = options.value ? 0
     @_rounding = options.rounding ? 0
 
@@ -21,6 +21,17 @@ class ValueLayer extends Layer
       @emit("change:value", @_value)
 
       @html = @formatString(@_value)
+
+  @define "rounding",
+    get: -> @_rounding
+    set: (r) -> @_rounding = r
+
+  @define "formatString",
+    get: -> @_formatString
+    set: (f) ->
+      @_formatString = f
+      @html = f(@_value)
+
 
   interpolate: (v, animationOptions, callback) ->
     # If the destination value is current value, exit

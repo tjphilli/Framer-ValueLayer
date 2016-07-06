@@ -113,4 +113,3 @@ _____
 TODO
 
 - More example gifs
-- Expose properties

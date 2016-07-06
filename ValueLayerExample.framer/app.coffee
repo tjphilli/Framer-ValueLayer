@@ -93,4 +93,3 @@ setValueButton.onMouseOut ->
 setValueButton.onClick ->
 	dollars.interpolate _inputField.value
 
-
