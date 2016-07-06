@@ -113,3 +113,4 @@ _____
 TODO
 
 - More example gifs
+- BUG: Fix issue that causes error when states are used for animation
