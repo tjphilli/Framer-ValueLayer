@@ -93,10 +93,4 @@ setValueButton.onMouseOut ->
 setValueButton.onClick ->
 	dollars.interpolate _inputField.value
 
-Utils.delay 2, ->
-	dollars.interpolate 2020, -> print "I am first"
-Utils.delay 4, ->
-	dollars.interpolate 3020, -> print "I am seconc"
-Utils.delay 6, ->
-	dollars.interpolate 4020, -> print "I am third"
 
