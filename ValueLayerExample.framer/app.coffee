@@ -44,7 +44,7 @@ inputField = new Layer
 	width: Screen.width, height: 100, y: 0
 	parent: bottomGroup
 	html: """
-		<input id="input" type="number" value ="1120"
+		<input id="input" type="number" value="1120" pattern="[0-9]*" inputmode="numeric"
 			style="height: 100px;
 					font-size: 48px;
 					padding-left: 10px;
@@ -52,7 +52,7 @@ inputField = new Layer
 					box-sizing: border-box;
 					text-align: center;
 					border: 1px solid #ccc"
-		></input>
+		/>
 	"""
 setValueButton = new Layer
 	parent: bottomGroup
