@@ -1,25 +1,25 @@
 app.coffee
-framer/backups/backup-2016-07-05 23.30.45.coffee
-framer/backups/backup-2016-07-05 23.31.45.coffee
-framer/backups/backup-2016-07-05 23.51.45.coffee
-framer/backups/backup-2016-07-05 23.52.45.coffee
-framer/backups/backup-2016-07-05 23.54.45.coffee
-framer/backups/backup-2016-07-05 23.55.45.coffee
-framer/backups/backup-2016-07-05 23.57.45.coffee
-framer/backups/backup-2016-07-12 00.07.26.coffee
-framer/backups/backup-2016-07-12 00.08.26.coffee
-framer/backups/backup-2016-07-12 00.13.26.coffee
-framer/backups/backup-2016-07-12 00.14.26.coffee
-framer/backups/backup-2016-07-12 00.15.26.coffee
-framer/backups/backup-2016-07-12 00.24.26.coffee
-framer/backups/backup-2016-07-12 00.25.26.coffee
-framer/backups/backup-2016-07-12 00.26.26.coffee
-framer/backups/backup-2016-07-12 00.27.26.coffee
-framer/backups/backup-2016-07-12 00.28.26.coffee
-framer/backups/backup-2016-07-12 00.29.26.coffee
-framer/backups/backup-2016-07-12 00.31.26.coffee
-framer/backups/backup-2016-07-12 00.34.26.coffee
-framer/backups/backup-2016-07-12 00.35.26.coffee
+framer/backups/backup-2016-07-12 02.59.25.coffee
+framer/backups/backup-2016-07-12 03.00.25.coffee
+framer/backups/backup-2016-07-12 03.01.25.coffee
+framer/backups/backup-2016-07-12 03.02.25.coffee
+framer/backups/backup-2016-07-12 03.03.25.coffee
+framer/backups/backup-2016-07-12 03.04.25.coffee
+framer/backups/backup-2016-07-12 03.05.25.coffee
+framer/backups/backup-2016-07-12 03.06.25.coffee
+framer/backups/backup-2016-07-12 03.08.25.coffee
+framer/backups/backup-2016-07-12 03.09.25.coffee
+framer/backups/backup-2016-07-12 03.11.25.coffee
+framer/backups/backup-2016-07-12 03.12.25.coffee
+framer/backups/backup-2016-07-12 03.13.25.coffee
+framer/backups/backup-2016-07-12 03.17.20.coffee
+framer/backups/backup-2016-07-12 03.19.20.coffee
+framer/backups/backup-2016-07-12 03.20.20.coffee
+framer/backups/backup-2016-07-12 03.21.20.coffee
+framer/backups/backup-2016-07-12 03.22.20.coffee
+framer/backups/backup-2016-07-12 03.23.20.coffee
+framer/backups/backup-2016-07-12 03.24.20.coffee
+framer/backups/backup-2016-07-12 03.25.20.coffee
 framer/coffee-script.js
 framer/config.json
 framer/framer.generated.js
@@ -50,6 +50,7 @@ framer/mirror.css
 framer/preview.png
 framer/style.css
 framer/version
+images/topSection.png
 index.html
 modules/myModule.coffee
 modules/ValueLayer.coffee
