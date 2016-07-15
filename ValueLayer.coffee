@@ -1,6 +1,20 @@
-# Add the following line to your project in Framer Studio.
-# {ValueLayer} = require "ValueLayer"
-# instantiate new instances with: new ValueLayer
+################################################################################
+# Updated 15 Jun 2016 by Trevor Phillippi || @trevorphillippi
+################################################################################
+#
+# Usage:
+#
+#   {ValueLayer} = require "ValueLayer"
+# 	currencyLayer = new ValueLayer
+#      value: 100
+#      rounding: 2
+#      formatString: (v) -> "$#{v}"
+#
+# To do:
+#   - make values editable in place
+#   - make richer animation options
+#
+################################################################################
 
 
 class ValueLayer extends Layer
