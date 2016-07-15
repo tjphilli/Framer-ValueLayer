@@ -2,7 +2,7 @@
 
 ValueLayer is a Layer subclass dedicated to helping you manage numbers in your prototypes, and animate between them.
 
-![example gif](http://i.giphy.com/l46C6q33wRPvFPFoQ.gif)
+![example gif](http://i.giphy.com/l41Yh0YgfXpSu1An6.gif)
 
 ## API
 
@@ -108,9 +108,25 @@ dollarsLabel.on "change:value", (v) ->
 	poundsLabel.value = v * 0.76
 
 ```
-_____
+## Examples
+### Bar Chart Animation
+![example barchart](http://i.giphy.com/l0HlShKU8UFzXRdok.gif)
 
+[Framer Share Link](http://share.framerjs.com/s1n8imwldqd5/)
+### Currency Converter App
+[Framer Share Link](http://share.framerjs.com/d4j2j90rb3x1/)
+
+![example](http://i.giphy.com/26BRL7fdkp5hsn852.gif)
+
+### Basic Currency Converter thing
+[Framer Share Link](http://share.framerjs.com/6usn0ms33jju/)
+
+![example](http://i.giphy.com/l41Yh0YgfXpSu1An6.gif)
+
+
+_____
 TODO
 
-- More example gifs
+- More example gifs in API section
+- Make gifs quality not terribl
 - BUG: Fix issue that sometimes causes error when states are used for animation (can't reproduce)
