@@ -1,174 +1,104 @@
-cornFlowerGrey = new Color "#455064"
+################################################################################
+# Updated 15 Jul 2016 by Trevor Phillippi || @trevorphillippi
+################################################################################
 
 {ValueLayer} = require "ValueLayer"
 bg = new BackgroundLayer
-	backgroundColor: cornFlowerGrey
-	
-currencies = 
-	dollar:
-		symbol: "$"
-		abbrev: "USD"
-		scalingFactor: 1
-	euro:
-		symbol: "€"
-		abbrev: "EUR"
-		scalingFactor: 0.91
-	pound:
-		symbol: "£"
-		abbrev: "GBP"
-		scalingFactor: 0.76
-	burrito:
-		symbol: ""
-		abbrev: "BURRITOS"
-		scalingFactor: 0.1333
-	
+	backgroundColor: "#fafafa"
 
-textStyle =
-	fontSize: "28px"
-	fontWeight: 700
-	lineHeight: "36px"
-	padding: "16px"
+scalingFactors =
+	euro: 0.91
+	pound: 0.76
+	burrito: 0.1333
 
-topSection = new Layer
-	width: 750
-	height: 129
-	y: -1
-	image: "images/topSection.png"
-
-
-currencyUnitWidth = Screen.width / 4
+# Create the ValueLayers
+dollars = new ValueLayer
+	width: Screen.width, height: 72, x: 100, y: 100
+	backgroundColor: "transparent"
+	style: fontSize: "48px", color: "black"
+	formatString: (v) -> return "Suzie has <span style='color: cornflowerblue; font-weight: bold'>$#{v}</span> USD"
+	value: 10
+euros = new ValueLayer
+	width: Screen.width, height: 72, x: 100, y: dollars.maxY
+	backgroundColor: "transparent"
+	style: fontSize: "48px", color: "black"
+	formatString: (v) -> return "which is <span style='color: red; font-weight: bold'>€#{v}</span> EUR"
+	value: dollars.value * scalingFactors.euro
+pounds = new ValueLayer
+	width: Screen.width, height: 72, x: 100, y: euros.maxY
+	backgroundColor: "transparent"
+	style: fontSize: "48px", color: "black"
+	formatString: (v) -> return "which is <span style='color: purple; font-weight: bold'>£#{v}</span> GBP"
+	value: dollars.value * scalingFactors.pound
+burritos = new ValueLayer
+	width: Screen.width, height: 72, x: 100, y: pounds.maxY
+	backgroundColor: "transparent"
+	style: fontSize: "48px", color: "black"
+	formatString: (v) -> return "which is <span style='color: green; font-weight: bold'>#{v}</span> burritos"
+	value: dollars.value * scalingFactors.burrito
 
 
-currencyDisplayLayers = []
-
-currentCurrencyLayer = null
-
-
-# Input Field / Button Group
+# Create/configure the input field and "accept" button
 bottomGroup = new Layer
-	width: Screen.width - 240
-	borderRadius: 10
-	height: 414
-	backgroundColor: "rgb(230, 230, 230)"
-	shadowSpread: 3
-	shadowColor: "rgba(0,0,0,0.32)"
-	shadowBlur: 15
-
-setValueButton = new Layer
-	parent: bottomGroup
-	width: bottomGroup.width, height: 128
-	backgroundColor: "cornflowerblue"
-	style:
-		lineHeight: "128px"
-		fontSize: "36px"
-		textTransform: "uppercase"
-		fontWeight: "bold"
-		textAlign: "center"
-		borderRadius: "0 0 6px 6px"
-	maxY: bottomGroup.height
-	html: "Set Value"
+	width: Screen.width
 
 inputField = new Layer
-	width: bottomGroup.width, height: 140
-	maxY: setValueButton.minY - 40
-	backgroundColor: "transparent"
+	width: Screen.width, height: 100, y: 0
 	parent: bottomGroup
 	html: """
-		<input id="input" type="number" value="1120" pattern="[0-9]*" inputmode="numeric"
-			style="height: 140px;
-					font-size: 128px;
-					padding-left: 20px;
+		<input id="input" type="number" value ="1120"
+			style="height: 100px;
+					font-size: 48px;
+					padding-left: 10px;
 					width: 100%;
 					box-sizing: border-box;
 					text-align: center;
-					font-family: Helvetica;
-					font-weight: 100;
-					color: #{cornFlowerGrey};
-					background-color: transparent;
-					outline: none;
-					"
-		/>
+					border: 1px solid #ccc"
+		></input>
 	"""
 _inputField = document.querySelector("#input")
-currentCurrencyLabel = new Layer
+
+setValueButton = new Layer
 	parent: bottomGroup
-	width: bottomGroup.width
-	y: 28
-	backgroundColor: "transparent"
+	width: Screen.width, height: 100
+	backgroundColor: "cornflowerblue"
 	style:
-		color: cornFlowerGrey
-		fontWeight: "bold"
+		lineHeight: "100px"
 		fontSize: "32px"
+		textTransform: "uppercase"
+		fontWeight: "bold"
 		textAlign: "center"
+	minY: inputField.maxY
+	html: "Set Value"
 
-
-
-
-setCurrency = (layer, currency) ->
-	currentCurrencyLayer?.backgroundColor = "#3B475B"
-	currentCurrencyLayer?.borderColor = "transparent"
-	currentCurrencyLayer = layer
-	currentCurrencyLayer.backgroundColor = cornFlowerGrey
-	currentCurrencyLayer.style =
-		borderBottom: "2px solid cornflowerblue"
-	currentCurrencyLabel.html = currency.abbrev
-	_inputField.value  = layer.value
-
-for key, obj of currencies
-	do(obj) ->
-		c = new ValueLayer
-			name: key
-			width: currencyUnitWidth, height: 108,
-			x: if currencyDisplayLayers.length is 0 then 0 else currencyDisplayLayers[currencyDisplayLayers.length - 1].maxX
-			y: topSection.maxY
-			backgroundColor: "#3B475B"
-			style: textStyle
-			formatString: (v) -> return "#{obj.abbrev} <br> <span style='font-size: 32px; font-weight: 500;'>#{obj.symbol} #{v}</span>"
-			value: if currencyDisplayLayers.length is 0 then 10 else currentCurrencyLayer.value * obj.scalingFactor
-		if key is "dollar" then setCurrency c, obj
-		currencyDisplayLayers.push c
-		c.onClick ->
-			setCurrency c, obj
-
-currentCurrencyLayer.on "change:value", (v) ->
-	for currencyDisplayLayer in currencyDisplayLayers
-		unless currencyDisplayLayer.name is "dollar"
-			currencyDisplayLayer.value = v * currencies[currencyDisplayLayer.name].scalingFactor
-
-bottomGroup.center()
+bottomGroup.height = setValueButton.height + inputField.height
 
 bottomGroup.states.add
 	offscreen:
 		opacity: 0
-		scale: 0.8
+		minY: Screen.height
 	onscreen:
 		opacity: 1
-		scale: 1
+		maxY: Screen.height
 bottomGroup.states.switchInstant "offscreen"
 
-currentCurrencyLayer.interpolate 1120, time: 0.5, curve:"ease-in-out", ->
-	Utils.delay(0.5, -> bottomGroup.states.switch "onscreen", curve: "spring(450, 25, 0)")
-	_inputField.value = 1120
-
-_inputField.onfocus = =>
-	bottomGroup.animate
-		properties: 
-			backgroundColor: "white"
-		time: 0.2
-_inputField.onblur = =>
-	bottomGroup.animate
-		properties: 
-			backgroundColor: "rgb(230, 230, 230)"
-		time: 0.2
 
 
+# Have the other 3 currencies listen for changes to dollars
+dollars.on "change:value", (v) ->
+	euros.value = v * scalingFactors.euro
+	pounds.value = v * scalingFactors.pound
+	burritos.value = v * scalingFactors.burrito
+
+# Hover states for button
 setValueButton.onMouseOver ->
 	@backgroundColor = new Color(@backgroundColor).darken(5)
 setValueButton.onMouseOut ->
 	@backgroundColor = new Color(@backgroundColor).lighten(5)
 
+# When button is clicked, get the value attribute of _inputField (a reference to a DOM element)
 setValueButton.onClick ->
-	currencyDisplayLayers[0].interpolate _inputField.value * (1 / currencies[currentCurrencyLayer.name].scalingFactor)
+	dollars.interpolate _inputField.value
 
-
-
+# Start the prototype by animating the numbers – show the bottomGroup when it's finished
+dollars.interpolate 1120, time: 0.5, curve:"ease-in-out", -> Utils.delay(0.5, -> bottomGroup.states.switch "onscreen", curve: "spring(500, 50, 0)")
