@@ -130,3 +130,4 @@ TODO
 - More example gifs in API section
 - Make gifs quality not terrible
 - BUG: Fix issue that sometimes causes error when states are used for animation (can't reproduce)
+- IMPROVEMENT: Make value an optional in init (default to 0)
