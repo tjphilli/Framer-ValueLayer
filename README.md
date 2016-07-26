@@ -132,4 +132,4 @@ TODO
 - BUG: Fix issue that sometimes causes error when states are used for animation (can't reproduce)
 - IMPROVEMENT: Make value an optional in init (default to 0)
 - IMPROVEMENT: If rounding is set, ensure that the appropriate trailing zeroes are added
-– FEATURE: Make ValueLayer support more types out of the box, like times to do clocks and time formatting/incrementing/storage
+- FEATURE: Make ValueLayer support more types out of the box, like times to do clocks and time formatting/incrementing/storageit
